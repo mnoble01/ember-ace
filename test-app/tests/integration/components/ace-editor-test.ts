@@ -80,7 +80,7 @@ module('Integration | Component | <AceEditor />', function (hooks) {
     assert.strictEqual(this.change.callCount, 0);
 
     this.component.setValue('two');
-    assert.strictEqual(this.change.callCount, 1);
+    assert.strictEqual(this.change.callCount, 1); // This fails with callCount = 2.
     assert.strictEqual(this.component.value, 'two');
 
     this.component.setValue('');
