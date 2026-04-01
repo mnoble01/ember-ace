@@ -72,9 +72,12 @@ module('Integration | Component | <AceEditor />', function (hooks) {
   });
 
   test('internal value updates with initial value', async function (this: AceTestContext, assert) {
+    this.state.value = 'one';
     await render<AceTestContext>(hbs`
-      <AceEditor @options={{this.state.options}} @update={{this.change}} />
+      <AceEditor @options={{this.state.options}} @update={{this.change}} @value={{this.state.value}} />
     `);
+
+    assert.strictEqual(this.change.callCount, 0);
 
     this.component.setValue('two');
     assert.strictEqual(this.change.callCount, 1);
